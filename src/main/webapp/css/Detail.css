@@ -1,0 +1,150 @@
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+* {
+    box-sizing: border-box;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+
+  /* Header */
+
+  .search {
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+  .search__logo {
+    margin-right: 30px;
+  }
+  .search__logo a{
+      list-style: none;
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: 900;
+      color: #0096a5;
+     }
+
+  .search__input {
+    position: relative;
+  }
+  #word {
+    width: 600px;
+    height: 45px;
+    border: 2px solid #0096a5;
+    border-radius: 24px;
+    outline: none;
+  }
+  #button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 16px;
+    top: 10px;
+  }
+  .fas {
+    font-size: 24px;
+    color: #0096a5;
+  }
+  
+   
+  
+  /* Section*/
+  #goodsdeatil {
+    width: 1260px;
+  }
+  #title {
+    height: 340px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .goodsinfo {
+    flex-basis: 48.5%;
+  }
+
+  /* Section - 사진 */
+  #goodsImg {
+    position: relative;
+  }
+  /* 사진크기에따라 따로 설정바람 */
+  #goodsImg__img { 
+    position: absolute;
+    right: 200px;
+    top: 100px;
+  }
+
+  /* Section- 설명 */
+  #goods-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    padding-bottom: 30px;
+  }
+  #goods-price {
+    font-size: 20px;
+    font-weight: 900;
+    color: #ae0000;
+    padding-bottom: 30px;
+  }
+
+  /* Section- 옵션 */
+  #option {
+    padding-bottom: 40px;
+  }
+  .option__label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    padding-bottom: 10px;
+  }
+  .opt {
+    width: 32%;
+    height: 40px;
+    border: 1px solid #bdbdbd;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .opt:focus {
+    outline: none;
+    border-color: #0096a5;
+  }
+  #opt {
+    cursor: text;
+  }
+
+  /* Section - 장바구니 */
+  #order {
+    display: flex;
+    justify-content: space-between;
+  }
+  .order__input {
+    width: 300px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .c1 {
+    background-color: #ffffff;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+  }
+  .c2 {
+    background-color: #0096a5;
+    color: #ffffff;
+    border: 1px solid #0096a5;
+    border-radius: 10px;
+  }
+  
+/* Taps */
+.nav{
+    padding-top: 20px;
+}

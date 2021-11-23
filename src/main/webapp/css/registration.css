@@ -1,0 +1,65 @@
+:root {
+    /* sizea */
+    --padding: 20px;
+
+    /* font-size */
+    --font-large : 24px;
+    --font-medium: 12px;
+    --font-weight: 700;
+
+    /*  */
+}
+
+.container{
+    padding-top: 50px;
+}
+/* Head */
+
+.card-header p {
+    font-size: var(--font-large);
+    font-weight: var(--font-weight);
+    color: red;
+}
+.blockquote p{
+    font-size:var(--font-large);
+}
+.blockquote-footer{
+    font-size: var(--font-medium);
+}
+
+/* 상품등록 Text */
+#text {
+    font-weight: var(--font-weight);
+    padding: var(--padding);
+}
+.Product__list{
+    padding: var(--padding);
+}
+.Product__name{
+    padding: var(--padding);
+}
+.Product__price{
+    padding: var(--padding);
+}
+.Product__contents{
+    padding: var(--padding);
+}
+.Product__manufacturer{
+    padding: var(--padding);
+}
+.Product__stock{
+    font-weight: 700;
+    padding: var(--padding);
+}
+.Product__state{
+    padding: var(--padding);
+}
+.Product__state .Rabel{
+    padding-bottom: 10px;
+}
+.Product__image{
+    padding: var(--padding);
+}
+.btn__select{
+    padding: var(--padding);
+}
