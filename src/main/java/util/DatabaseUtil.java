@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 public class DatabaseUtil {
 	public static Connection getConnection() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/jsp_web?characterEncoding=UTF-8&serverTimezone=UTC&useUnicode=true&allowPublicKeyRetrieval=true&useSSL=false";
+			String dbURL = "jdbc:mysql://localhost:3306/jsp_web?characterEncoding=UTF-8&serverTimezone=UTC&useUnicode=true&allowPublicKeyRetrieval=true";
 			String dbID = "root";
 			String dbPassword = "tls135712!";
 			Class.forName("com.mysql.cj.jdbc.Driver");

@@ -36,12 +36,12 @@
           <!-- 상품 등록 Text -->
         	<form action="registrationAction.jsp" method="post" name="productInsertForm" enctype="multipart/form-data" accept-charset="UTF-8"> <!-- enctype : 파일전송시 필요 -->
 				<div id="text">
-					<div class="Product__list">
+					<%-- <div class="Product__list">
 						<label class="col-sm-2">상품 목록</label>
 						<div class="com-sm-3">
 							<input type="text" id="productId" name=<%="productId" %> class="form-control">
 						</div>
-					</div>
+					</div> --%>
 					
 					<div class="Product__name">
 						<label class="col-sm-2">상품 이름</label>

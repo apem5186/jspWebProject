@@ -160,7 +160,7 @@
 			script.close();
 			return;
 		} */
-		if (productId == null || productName == null || companyId == 0 || price == 0 ||
+		if (productName == null || companyId == 0 || price == 0 ||
 				soldCount == 0 || detail == null || imgUrl_1 == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -171,7 +171,7 @@
 			return;
 		}
 		ProductDAO productDAO = new ProductDAO();
-		int result = productDAO.insertProduct(new ProductDTO(productId, productName, companyId, price,
+		int result = productDAO.insertProduct(new ProductDTO(0, productName, companyId, price,
 				soldCount, detail, imgUrl_1));
 		if (result == -1) {
 			PrintWriter script = response.getWriter();

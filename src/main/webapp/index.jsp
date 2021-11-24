@@ -81,13 +81,13 @@
 			<div class="row">
 <%
 	ArrayList<ProductDTO> pdList = pdDao.pdList();
-	
+	//String realPath = "C://Users//apem5//OneDrive//바탕 화면//JspWebProject//src//main//webapp//images//";
 	for(ProductDTO p:pdList) {
 %>
 				<div class="col" >
 					<figure class="figure">
-						<a href="detail.jsp?productId=<%=p.getProductId() %>">
-						<img src=<%=p.getImgUrl_1() %> class="figure-img img-fluid rounded" alt="...">
+						<a href="detail.jsp?productId=<%=String.valueOf(p.getProductId()) %>">
+						<img src="./images/<%=p.getImgUrl_1() %>" class="figure-img img-fluid rounded" alt="...">
 						</a>
 						<figcaption class="figure-caption"><%=p.getProductName() %></figcaption>
 					</figure>

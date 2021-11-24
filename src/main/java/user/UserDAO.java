@@ -20,13 +20,13 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString(1).equals(userPassword)) {
-					return 1;	// ·Î±×ÀÎ ¼º°ø
+					return 1;	// ë¡œê·¸ì¸ ì„±ê³µ
 				}
 				else {
-					return 0; 	// ºñ¹Ğ¹øÈ£ Æ²¸²
+					return 0; 	// ë¹„ë°€ë²ˆí˜¸ í‹€ë¦¼
 				}
 			}
-			return -1;	// ¾ÆÀÌµğ ¾øÀ½
+			return -1;	// ì•„ì´ë”” ì—†ìŒ
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -34,7 +34,7 @@ public class UserDAO {
 			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
 			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
 		}
-		return -2;	// µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return -2;	// ë°ì´í„°ë² ì´ìŠ¤ ì˜¤ë¥˜
 	}
 	
 	public int join(UserDTO user) {
@@ -57,7 +57,7 @@ public class UserDAO {
 			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
 			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
 		}
-		return -1;	// È¸¿ø°¡ÀÔ ½ÇÆĞ
+		return -1;	// íšŒì›ê°€ì… ì‹¤íŒ¨
 	}
 	
 	public String getUserEmail(String userID) {
@@ -81,7 +81,7 @@ public class UserDAO {
 			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
 			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
 		}
-		return null;	// µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return null;	// ë°ì´í„°ë² ì´ìŠ¤ ì˜¤ë¥˜
 	}
 	
 	public boolean getUserEmailChecked(String userID) {
@@ -104,7 +104,7 @@ public class UserDAO {
 			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
 			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
 		}
-		return false;	// µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return false;	// ë°ì´í„°ë² ì´ìŠ¤ ì˜¤ë¥˜
 	}
 	
 	public boolean setUserEmailChecked(String userID) {
@@ -125,7 +125,7 @@ public class UserDAO {
 			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
 			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
 		}
-		return false;	// µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+		return false;	// ë°ì´í„°ë² ì´ìŠ¤ ì˜¤ë¥˜
 	}
 	
 }

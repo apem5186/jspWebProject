@@ -12,6 +12,7 @@
 <%@ page import="util.SHA256"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
+	SHA256 sha256 = new SHA256();
 	UserDAO userDAO = new UserDAO();
 	String userID = null;
 	if(session.getAttribute("userID") != null) {
@@ -39,7 +40,7 @@
 		return;
 	}
 	
-	String host = "http://localhost:8080/JspWeb/";
+	String host = "http://localhost:8080/JspWebProject/";
 	String from = "apem0326@gmail.com";
 	String to = userDAO.getUserEmail(userID);
 	String subject = "회원가입을 위한 이메일 인증 메일입니다.";
@@ -51,6 +52,8 @@
 	p.put("mail.smtp.host", "smtp.googlemail.com");
 	p.put("mail.smtp.port", "465");
 	p.put("mail.smtp.starttls.enable", "true");
+	p.put("mail.smtp.starttls.required", "true");
+	p.put("mail.smtp.ssl.protocols", "TLSv1.2");
 	p.put("mail.smtp.auth", "true");
 	p.put("mail.smtp.debug", "true");
 	p.put("mail.smtp.socketFactory.port", "465");
@@ -70,6 +73,7 @@
 		msg.setContent(content, "text/html;charset=UTF-8");
 		Transport.send(msg);
 	} catch (Exception e) {
+		//System.out.println(Arrays.toString(SSLContext.getDefault().getSupportedSSLParameters().getProtocols()));
 		e.printStackTrace();
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -118,7 +122,7 @@
 	<section class="container mt-3" style="max-width: 560px;">
 		<div class="alert alert-success mt-4" role="alert">
 			이메일 주소 인증 메일이 전송되었습니다. 회원가입시 입력했던 이메일에 들어가셔서 인증해주세요.
-		</div>"
+		</div>
 	</section>
 	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 2021 신용준 All Rights Reserved.

@@ -26,7 +26,7 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String productId = rs.getString("productId");
+				int productId = rs.getInt("productId");
 				String productName = rs.getString("productName");
 				int companyId = rs.getInt("companyId");
 				int price = rs.getInt("price");
@@ -54,17 +54,17 @@ public class ProductDAO {
 	}
 	
 	
-	public ProductDTO getProduct(String id) {
+	public ProductDTO getProduct(String productId) {
 		ProductDTO pdDto = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement("SELECT * FROM product where productId = ?");
-			pstmt.setString(1, id);
+			pstmt.setInt(1, Integer.parseInt(productId));
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				pdDto = new ProductDTO();
-				pdDto.setProductId(rs.getString("productId"));
+				pdDto.setProductId(rs.getInt("productId"));
 				pdDto.setProductName(rs.getString("productName"));
 				pdDto.setCompanyId(rs.getInt("companyId"));
 				pdDto.setPrice(rs.getInt("price"));
@@ -84,7 +84,7 @@ public class ProductDAO {
 	}
 	
 	public int insertProduct(ProductDTO productDTO) {
-		String SQL = "INSERT INTO product (productId, productName, companyId, price, soldCount, detail, imgUrl_1) values (?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO product VALUES (NULL, ?, ?, ?, ?, ?, ?, 0)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -112,13 +112,13 @@ public class ProductDAO {
 			 */
 				conn = DatabaseUtil.getConnection();
 				pstmt = conn.prepareStatement(SQL);
-				pstmt.setString(1, productDTO.getProductId().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
-				pstmt.setString(2, productDTO.getProductName().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
-				pstmt.setInt(3, productDTO.getCompanyId());
-				pstmt.setInt(4, productDTO.getPrice());
-				pstmt.setInt(5, productDTO.getSoldCount());
-				pstmt.setString(6, productDTO.getDetail().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
-				pstmt.setString(7, productDTO.getImgUrl_1().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
+				//pstmt.setInt(1, productDTO.getProductId());
+				pstmt.setString(1, productDTO.getProductName().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
+				pstmt.setInt(2, productDTO.getCompanyId());
+				pstmt.setInt(3, productDTO.getPrice());
+				pstmt.setInt(4, productDTO.getSoldCount());
+				pstmt.setString(5, productDTO.getDetail().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
+				pstmt.setString(6, productDTO.getImgUrl_1().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
 				return pstmt.executeUpdate();
 		} catch (Exception e){
 			System.out.println("insertProduct Error" + e);
@@ -145,22 +145,22 @@ public class ProductDAO {
             if (multi.getFilesystemName("img_Url_1") == null) {
             	String SQL = "UPDATE product SET productName=?, companyId=?, price=?, soldCount=?, detail=? where productId=?";
             	pstmt = conn.prepareStatement(SQL);
-            	pstmt.setString(1, multi.getParameter("productId"));
-            	pstmt.setString(2, multi.getParameter("productName"));
-            	pstmt.setString(3, multi.getParameter("companyId"));
-            	pstmt.setString(4, multi.getParameter("price"));
-            	pstmt.setString(5, multi.getParameter("soldCount"));
-            	pstmt.setString(6, multi.getParameter("detail"));
+            	//pstmt.setInt(1, Integer.parseInt(multi.getParameter("productId")));
+            	pstmt.setString(1, multi.getParameter("productName"));
+            	pstmt.setString(2, multi.getParameter("companyId"));
+            	pstmt.setString(3, multi.getParameter("price"));
+            	pstmt.setString(4, multi.getParameter("soldCount"));
+            	pstmt.setString(5, multi.getParameter("detail"));
             } else {
             	String SQL = "UPDATE product SET productName=?, companyId=?, price=?, soldCount=?, detail=?, imgUrl_1=? where productId=?";
             	pstmt = conn.prepareStatement(SQL);
-            	pstmt.setString(1, multi.getParameter("productId"));
-            	pstmt.setString(2, multi.getParameter("productName"));
-            	pstmt.setString(3, multi.getParameter("companyId"));
-            	pstmt.setString(4, multi.getParameter("price"));
-            	pstmt.setString(5, multi.getParameter("soldCount"));
-            	pstmt.setString(6, multi.getParameter("detail"));
-            	pstmt.setString(7, multi.getFilesystemName("imgUrl_1"));
+            	//pstmt.setInt(1, Integer.parseInt(multi.getParameter("productId")));
+            	pstmt.setString(1, multi.getParameter("productName"));
+            	pstmt.setString(2, multi.getParameter("companyId"));
+            	pstmt.setString(3, multi.getParameter("price"));
+            	pstmt.setString(4, multi.getParameter("soldCount"));
+            	pstmt.setString(5, multi.getParameter("detail"));
+            	pstmt.setString(6, multi.getFilesystemName("imgUrl_1"));
             }
             if (pstmt.executeUpdate() > 0) b = true;
 		} catch (Exception e){
@@ -182,7 +182,7 @@ public class ProductDAO {
 			conn = DatabaseUtil.getConnection();
 			String SQL = "DELETE FROM product WHERE productId = ?";
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, productId);
+			pstmt.setInt(1, Integer.parseInt("productId"));
 			if(pstmt.executeUpdate() > 0) b = true;
 		} catch (Exception e) {
 			System.out.println("deleteProduct Error" + e);
