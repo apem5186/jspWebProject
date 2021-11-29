@@ -13,12 +13,13 @@ public class ProductDTO {
 	private int soldCount;
 	private String detail;
 	private String imgUrl_1;
+	private String writerId;
 	
 	public ProductDTO() {
 	}
 	
 	public ProductDTO(int productId, String productName, int companyId, int price, int soldCount,
-			String detail, String imgUrl_1) {
+			String detail, String imgUrl_1, String writerId) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -27,5 +28,6 @@ public class ProductDTO {
 		this.soldCount = soldCount;
 		this.detail = detail;
 		this.imgUrl_1 = imgUrl_1;
+		this.writerId = writerId;
 	}
 }

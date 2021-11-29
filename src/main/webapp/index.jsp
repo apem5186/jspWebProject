@@ -53,6 +53,7 @@
 					<li class="nav-item"><a class="nav-link" href="userLogout.jsp">
 					로그아웃
 					</a></li>
+					<li class="userID"><%=userID %>님 환영합니다!</li>
 				</ul>
 			</div>
 		</div>
@@ -95,42 +96,7 @@
 <%
 	}
 %>
-				<%-- <div class="col">
-					<figure class="figure">
-						<a href="detail.jsp?productId=<%=data.getProductId() %>">
-						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
-						</a>
-						<figcaption class="figure-caption">임창정</figcaption>
-					</figure>
-				</div> --%>
 			</div>
-
-			<%-- <div class="row">
-				<div class="col">
-					<figure class="figure">
-						<a href="detail.jsp?productId=<%=data.getProductId() %>">
-						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
-						</a>
-						<figcaption class="figure-caption">임창정</figcaption>
-					</figure>
-				</div>
-				<div class="col">
-					<figure class="figure">
-						<a href="detail.jsp?productId=<%=data.getProductId() %>">
-						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
-						</a>
-						<figcaption class="figure-caption">임창정</figcaption>
-					</figure>
-				</div>
-				<div class="col">
-					<figure class="figure">
-						<a href="detail.jsp?productId=<%=data.getProductId() %>">
-						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
-						</a>
-						<figcaption class="figure-caption">임창정</figcaption>
-					</figure>
-				</div>
-			</div> --%>
 		</div>
 	</section>
 

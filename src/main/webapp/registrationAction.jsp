@@ -19,8 +19,6 @@
 	
 	//String realPath = request.getServletContext().getRealPath("images");
 	String realPath = "C://Users//apem5//OneDrive//바탕 화면//JspWebProject//src//main//webapp//images";
-	System.out.println(realPath);
-	System.out.println(realPath);
 		File dir = new File(realPath);
 	if(!dir.exists()) {
 		dir.mkdirs();
@@ -32,7 +30,6 @@
 	
 	filename = multipartRequest.getFilesystemName("imgUrl_1");
 	filename = new String(filename.getBytes("8859_1"), "utf-8");
-	System.out.println(filename);
 	String productId = "0";
 	String productName = null;
 	int companyId = 0;
@@ -40,7 +37,6 @@
 	int soldCount = 0;
 	String detail = null;
 	String imgUrl_1 = realPath;
-	System.out.println(imgUrl_1);
 %>
 <%=multipartRequest.getOriginalFileName("imgUrl_1") %>
 <%=filename %>
@@ -67,29 +63,9 @@
 		if(multipartRequest.getParameter("productId") != null) {
 			productId = multipartRequest.getParameter("productId");
 		} 
-		System.out.println(productId);
-		/* else {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('productId 입력 오류');");
-			script.println("history.back();");
-			script.println("</script>");
-			script.close();
-			return;
-		} */
 		if(multipartRequest.getParameter("productName") != null) {
 			productName = multipartRequest.getParameter("productName");
 		}
-		System.out.println(productName);
-		/* else {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('productName 입력 오류');");
-			script.println("history.back();");
-			script.println("</script>");
-			script.close();
-			return;
-		} */
 		if(multipartRequest.getParameter("companyId") != null) {
 			try {
 				companyId = Integer.parseInt(multipartRequest.getParameter("companyId"));	
@@ -147,19 +123,6 @@
 			return;
 		}
 		imgUrl_1 = filename;
-		System.out.println(imgUrl_1);
-		/* if(multipartRequest.getParameter("imgUrl_1") != "") {
-			imgUrl_1 = multipartRequest.getParameter("imgUrl_1") + filename;
-		} else {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('imgUrl_1 입력 오류');");
-			System.out.println(imgUrl_1 + filename);
-			script.println("history.back();");
-			script.println("</script>");
-			script.close();
-			return;
-		} */
 		if (productName == null || companyId == 0 || price == 0 ||
 				soldCount == 0 || detail == null || imgUrl_1 == null) {
 			PrintWriter script = response.getWriter();
@@ -172,7 +135,7 @@
 		}
 		ProductDAO productDAO = new ProductDAO();
 		int result = productDAO.insertProduct(new ProductDTO(0, productName, companyId, price,
-				soldCount, detail, imgUrl_1));
+				soldCount, detail, imgUrl_1, userID));
 		if (result == -1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

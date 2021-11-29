@@ -33,6 +33,7 @@ public class ProductDAO {
 				int soldCount = rs.getInt("soldCount");
 				String detail = rs.getString("detail");
 				String imgUrl_1 = rs.getString("imgUrl_1");
+				String writerId = rs.getString("writerId");
 				
 				ProductDTO data = new ProductDTO();
 				data.setProductId(productId);
@@ -42,6 +43,7 @@ public class ProductDAO {
 				data.setSoldCount(soldCount);
 				data.setDetail(detail);
 				data.setImgUrl_1(imgUrl_1);
+				data.setWriterId(writerId);
 				pdList.add(data);
 			}
 			pstmt.close();
@@ -71,6 +73,7 @@ public class ProductDAO {
 				pdDto.setSoldCount(rs.getInt("soldCount"));
 				pdDto.setDetail(rs.getString("detail"));
 				pdDto.setImgUrl_1(rs.getString("imgUrl_1"));
+				pdDto.setWriterId(rs.getString("writerId"));
 				
 			}		
 		} catch (Exception e) {
@@ -84,41 +87,20 @@ public class ProductDAO {
 	}
 	
 	public int insertProduct(ProductDTO productDTO) {
-		String SQL = "INSERT INTO product VALUES (NULL, ?, ?, ?, ?, ?, ?, 0)";
+		String SQL = "INSERT INTO product VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			//���ε��� �̹��� ���(���� ���)
-			/*
-			 * String uploadDir =
-			 * "C:\\Users\\apem5\\git\\jspWeb\\JspWeb\\WebContent\\images";
-			 * //MultipartRequest multi=new MultipartRequest(request, savePath, sizeLimit,
-			 * new DefaultFileRenamePolicy()); MultipartRequest multi = new
-			 * MultipartRequest(request, uploadDir, 5*1024*1024, "utf-8", new
-			 * DefaultFileRenamePolicy()); conn = DatabaseUtil.getConnection(); String SQL =
-			 * "INSERT INTO product (productId, productName, companyId, price, soldCount, detail, imgUrl_1) values (?, ?, ?, ?, ?, ?, ?)"
-			 * ;
-			 * 
-			 * pstmt = conn.prepareStatement(SQL); pstmt.setString(1,
-			 * multi.getParameter("productId")); pstmt.setString(2,
-			 * multi.getParameter("productName")); pstmt.setString(3,
-			 * multi.getParameter("companyId")); pstmt.setString(4,
-			 * multi.getParameter("price")); pstmt.setString(5,
-			 * multi.getParameter("soldCount")); pstmt.setString(6,
-			 * multi.getParameter("detail")); if(multi.getParameter("imgUrl_1") == null) {
-			 * //�̹����� ������� ����Ʈ �̹��� ���� pstmt.setString(7, "../images/#"); } else
-			 * { pstmt.setString(7, multi.getFilesystemName("imgUrl_1")); }
-			 */
 				conn = DatabaseUtil.getConnection();
 				pstmt = conn.prepareStatement(SQL);
-				//pstmt.setInt(1, productDTO.getProductId());
 				pstmt.setString(1, productDTO.getProductName().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
 				pstmt.setInt(2, productDTO.getCompanyId());
 				pstmt.setInt(3, productDTO.getPrice());
 				pstmt.setInt(4, productDTO.getSoldCount());
 				pstmt.setString(5, productDTO.getDetail().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
 				pstmt.setString(6, productDTO.getImgUrl_1().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
+				pstmt.setString(7, productDTO.getWriterId().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
 				return pstmt.executeUpdate();
 		} catch (Exception e){
 			System.out.println("insertProduct Error" + e);
@@ -136,14 +118,14 @@ public class ProductDAO {
 		ResultSet rs = null;
 		boolean b = false;
 		try {
-			//���ε��� �̹��� ���(���� ���)
+			//업로드할 이미지 경로(절대 경로)
 			String uploadDir = "C:\\Users\\apem5\\git\\jspWeb\\JspWeb\\WebContent\\images";
 			 //MultipartRequest multi=new MultipartRequest(request, savePath, sizeLimit, new DefaultFileRenamePolicy());
             MultipartRequest multi = new MultipartRequest(request, uploadDir, 5*1024*1024, "utf-8", new DefaultFileRenamePolicy());
             conn = DatabaseUtil.getConnection();
             
             if (multi.getFilesystemName("img_Url_1") == null) {
-            	String SQL = "UPDATE product SET productName=?, companyId=?, price=?, soldCount=?, detail=? where productId=?";
+            	String SQL = "UPDATE product SET productName=?, companyId=?, price=?, soldCount=?, detail=? writerId=? where productId=?";
             	pstmt = conn.prepareStatement(SQL);
             	//pstmt.setInt(1, Integer.parseInt(multi.getParameter("productId")));
             	pstmt.setString(1, multi.getParameter("productName"));
@@ -151,8 +133,9 @@ public class ProductDAO {
             	pstmt.setString(3, multi.getParameter("price"));
             	pstmt.setString(4, multi.getParameter("soldCount"));
             	pstmt.setString(5, multi.getParameter("detail"));
+            	pstmt.setString(6, multi.getParameter("writerId"));
             } else {
-            	String SQL = "UPDATE product SET productName=?, companyId=?, price=?, soldCount=?, detail=?, imgUrl_1=? where productId=?";
+            	String SQL = "UPDATE product SET productName=?, companyId=?, price=?, soldCount=?, detail=?, imgUrl_1=? writerId=? where productId=?";
             	pstmt = conn.prepareStatement(SQL);
             	//pstmt.setInt(1, Integer.parseInt(multi.getParameter("productId")));
             	pstmt.setString(1, multi.getParameter("productName"));
@@ -161,6 +144,7 @@ public class ProductDAO {
             	pstmt.setString(4, multi.getParameter("soldCount"));
             	pstmt.setString(5, multi.getParameter("detail"));
             	pstmt.setString(6, multi.getFilesystemName("imgUrl_1"));
+            	pstmt.setString(7, multi.getParameter("writerId"));
             }
             if (pstmt.executeUpdate() > 0) b = true;
 		} catch (Exception e){

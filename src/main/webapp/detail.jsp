@@ -20,6 +20,10 @@
 </head>
 <body>
 <%	
+	String userID = null;
+	if(session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
 	String pdId = null;
 	if(request.getParameter("productId") != null) {
 		pdId = request.getParameter("productId");
@@ -91,7 +95,9 @@
    				<!-- 장바구니 | 구매하기 -->
                 <div id="order">
                     <!-- 서버 -->
-                    <span class="order__Btn"><input class="order__input c1" type="button" value="장바구니"></span> 
+                    <a href="cartAction.jsp?productId=<%=String.valueOf(data.getProductId()) %>">                 
+	                    <span class="order__Btn"><input class="order__input c1" type="button" value="장바구니"></span> 
+                    </a>
                     <span class="order__Btn"><input class="order__input c2" type="button" value="구매하기"></span> 
                 </div>
             </div>    
