@@ -39,7 +39,6 @@
 	 ProductDTO pdDTO = new ProductDAO().getProduct(productId);
 	 CartDTO cartData = new CartDAO().getCart(userID);
 %>
-	
 	<input type="hidden" name="cmd" value="order">
             <div class="basketdiv" id="basket">
                 <div class="row head">
@@ -58,7 +57,16 @@
                     </div>
                     <div class="split"></div>
                 </div>
-
+<%
+	if (cartData == null) {
+%>	
+				<div class="text">
+					<span style="display:block; text-align:center;">장바구니 비었습니다!</span>
+				</div>
+				<div class="img"><img src="./images/shipping-box.jpg"  width="720" height="720" ></div>
+<%
+	} else {
+%>
 <%
 	ArrayList<CartDTO> ctList = ctDAO.ctList(userID);
 	for(CartDTO c:ctList) {
@@ -82,10 +90,11 @@
                     </div>
 
                     <div class="subdiv">
-                        <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
+                        <div class="basketcmd"><a href="cartDeleteAction.jsp?cartId=<%=String.valueOf(c.getCartId()) %>" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
                     </div>
                 </div>
 <%
+			}
 		}
 	}
 %>
@@ -94,7 +103,7 @@
     
             <div class="right-align basketrowcmd">
                 <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선택상품삭제</a>
-                <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delAllItem();">장바구니비우기</a>
+                <a href="cartDeleteActionAll.jsp" class="abutton" onclick="javascript:basket.delAllItem();">장바구니비우기</a>
             </div>
             
             <!-- 선택 상품 -->

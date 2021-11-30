@@ -111,16 +111,38 @@ public class CartDAO {
 		return ctDto;
 	}
 	
-	public boolean deleteCart(String cartId) {
+	public boolean deleteCart(String cartId, String writerId) {
 		boolean b = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DatabaseUtil.getConnection();
-			String SQL = "DELETE FROM cart WHERE cartId = ?";
+			String SQL = "DELETE FROM cart WHERE cartId = ? AND writerId = ?";
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, cartId);
+			pstmt.setString(2, writerId);
+			if(pstmt.executeUpdate() > 0) b = true;
+		} catch (Exception e) {
+			System.out.println("deleteCart Error" + e);
+		} finally {
+			try { if(conn != null) conn.close(); } catch (Exception e) {e.printStackTrace();}
+			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
+			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
+		}
+		return b;
+	}
+	
+	public boolean deleteCartAll(String writerId) {
+		boolean b = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DatabaseUtil.getConnection();
+			String SQL = "DELETE FROM cart WHERE writerId = ?";
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, writerId);
 			if(pstmt.executeUpdate() > 0) b = true;
 		} catch (Exception e) {
 			System.out.println("deleteCart Error" + e);

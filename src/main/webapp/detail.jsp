@@ -95,8 +95,13 @@
    				<!-- 장바구니 | 구매하기 -->
                 <div id="order">
                     <!-- 서버 -->
-                    <a href="cartAction.jsp?productId=<%=String.valueOf(data.getProductId()) %>">                 
-	                    <span class="order__Btn"><input class="order__input c1" type="button" value="장바구니"></span> 
+                    <a href="cartAction.jsp?productId=<%=String.valueOf(data.getProductId()) %>">
+<script type="text/javascript">
+	function cart_btn() {
+		alert("장바구니에 추가되었습니다.")
+	}
+</script>                 
+	                    <span class="order__Btn"><input class="order__input c1" type="button" value="장바구니" onclick="javascript:cart_btn()"></span> 
                     </a>
                     <span class="order__Btn"><input class="order__input c2" type="button" value="구매하기"></span> 
                 </div>
