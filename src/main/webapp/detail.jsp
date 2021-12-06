@@ -103,7 +103,9 @@
 </script>                 
 	                    <span class="order__Btn"><input class="order__input c1" type="button" value="장바구니" onclick="javascript:cart_btn()"></span> 
                     </a>
-                    <span class="order__Btn"><input class="order__input c2" type="button" value="구매하기"></span> 
+                    <a href="payAction.jsp?productId=<%=String.valueOf(data.getProductId()) %>">
+                    	<span class="order__Btn"><input class="order__input c2" type="button" value="구매하기"></span> 
+                    </a>
                 </div>
             </div>    
         </div>      

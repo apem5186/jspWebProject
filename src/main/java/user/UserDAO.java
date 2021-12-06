@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import product.ProductDTO;
 import util.DatabaseUtil;
 
 public class UserDAO {
@@ -35,6 +36,33 @@ public class UserDAO {
 			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
 		}
 		return -2;	// 데이터베이스 오류
+	}
+	public UserDTO getUser(String userID) {
+		UserDTO usDto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement("SELECT * FROM user where userID = ?");
+			pstmt.setInt(1, Integer.parseInt(userID));
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				usDto = new UserDTO();
+				usDto.setUserID(rs.getString("userID"));
+				usDto.setUserPassword(rs.getString("userPassword"));
+				usDto.setUserEmail(rs.getString("userEmail"));
+				usDto.setUserEmailHash(rs.getString("UserEmailHash"));
+				usDto.setUserEmailChecked(rs.getBoolean("UserEmailChecked"));
+			}		
+		} catch (Exception e) {
+			System.out.println("getProductError" + e);
+		} finally {
+			try { if(conn != null) conn.close(); } catch (Exception e) {e.printStackTrace();}
+			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
+			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
+		}
+		return usDto;
 	}
 	
 	public int join(UserDTO user) {

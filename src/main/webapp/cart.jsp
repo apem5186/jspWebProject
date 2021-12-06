@@ -79,7 +79,7 @@
                         <div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();"></div>
                         <div class="img"><img src="./images/<%=image %>" width="60"></div>
                         <div class="pname">
-                            <span><%=cartData.getCartName() %></span>
+                            <span><%=c.getCartName() %></span>
                         </div>
                     </div>
 
@@ -110,7 +110,7 @@
             <div id="goorder" class="">
                 <div class="clear"></div>
                 <div class="buttongroup center-align cmd">
-                    <a href="javascript:void(0);">선택한 상품 주문</a>
+                    <a href="cartPayAction.jsp">선택한 상품 주문</a>
                 </div>
             </div>
 
