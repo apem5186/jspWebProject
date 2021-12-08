@@ -8,7 +8,7 @@ import lombok.Data;
 public class CartDTO {
 	private int cartId;
 	private String cartName;
-	private int cartCompanyName;
+	private String cartCompanyId;
 	private int cartPrice;
 	private int cartCount;
 	private String cartDetail;
@@ -19,12 +19,12 @@ public class CartDTO {
 	public CartDTO() {
 	}
 
-	public CartDTO(int cartId, String cartName, int cartCompanyName, int cartPrice, int cartCount, String cartDetail,
+	public CartDTO(int cartId, String cartName, String cartCompanyName, int cartPrice, int cartCount, String cartDetail,
 			String cartImg, int cartSum, String writerId) {
 		super();
 		this.cartId = cartId;
 		this.cartName = cartName;
-		this.cartCompanyName = cartCompanyName;
+		this.cartCompanyId = cartCompanyName;
 		this.cartPrice = cartPrice;
 		this.cartCount = cartCount;
 		this.cartDetail = cartDetail;

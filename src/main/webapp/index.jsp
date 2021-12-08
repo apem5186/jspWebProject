@@ -44,6 +44,7 @@
                <li><a href="./cart.jsp">장바구니</a></li>
                <li><a href="#"><b>즐겨찾기</b></a></li>
                <li><a href="#"><b>내상점</b></a></li>
+               <li><a href="./registration.jsp">등록하기</a></li>
                <li class="userID"><%=userID %>님 환영합니다!</li>
             </ul>
 <%

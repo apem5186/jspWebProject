@@ -29,6 +29,7 @@ public class CartDAO {
 				int cartId = rs.getInt("cartId");
 				String cartImg = rs.getString("cartImg");
 				String cartName = rs.getString("cartName");
+				String cartCompanyId = rs.getString("cartCompanyId");
 				int cartPrice = rs.getInt("cartPrice");
 				int cartCount = rs.getInt("cartCount");
 				int cartSum = rs.getInt("cartSum");
@@ -38,6 +39,7 @@ public class CartDAO {
 				data.setCartId(cartId);
 				data.setCartImg(cartImg);
 				data.setCartName(cartName);
+				data.setCartCompanyId(cartCompanyId);
 				data.setCartPrice(cartPrice);
 				data.setCartCount(cartCount);
 				data.setCartSum(cartSum);
@@ -54,8 +56,8 @@ public class CartDAO {
 	}
 
 	public int insertCart(ProductDTO productDTO) {
-	      String SQL = "INSERT INTO cart (cartId, cartName, cartPrice, cartCount, cartImg, writerId)"
-	    		  + "VALUES (?, ?, ?, ?, ?, ?)";
+	      String SQL = "INSERT INTO cart (cartId, cartName, cartCompanyId, cartPrice, cartCount, cartImg, writerId)"
+	    		  + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 	      Connection conn = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;
@@ -65,10 +67,11 @@ public class CartDAO {
 	
 				pstmt.setInt(1, productDTO.getProductId());
 				pstmt.setString(2, productDTO.getProductName());
-				pstmt.setInt(3, productDTO.getPrice());
-				pstmt.setInt(4, productDTO.getSoldCount());
-				pstmt.setString(5, productDTO.getImgUrl_1());
-				pstmt.setString(6, productDTO.getWriterId());
+				pstmt.setString(3, productDTO.getCompanyId());
+				pstmt.setInt(4, productDTO.getPrice());
+				pstmt.setInt(5, productDTO.getSoldCount());
+				pstmt.setString(6, productDTO.getImgUrl_1());
+				pstmt.setString(7, productDTO.getWriterId());
 				
 	            return pstmt.executeUpdate();
 	      } catch (Exception e){
@@ -95,6 +98,7 @@ public class CartDAO {
 				ctDto.setCartId(rs.getInt("cartId"));
 				ctDto.setCartImg(rs.getString("cartImg"));
 				ctDto.setCartName(rs.getString("cartName"));
+				ctDto.setCartCompanyId(rs.getString("cartCompanyId"));
 				ctDto.setCartPrice(rs.getInt("cartPrice"));
 				ctDto.setCartCount(rs.getInt("cartCount"));
 				ctDto.setCartSum(rs.getInt("cartSum"));

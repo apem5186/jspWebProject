@@ -28,7 +28,7 @@ public class ProductDAO {
 			while(rs.next()) {
 				int productId = rs.getInt("productId");
 				String productName = rs.getString("productName");
-				int companyId = rs.getInt("companyId");
+				String companyId = rs.getString("companyId");
 				int price = rs.getInt("price");
 				int soldCount = rs.getInt("soldCount");
 				String detail = rs.getString("detail");
@@ -68,7 +68,7 @@ public class ProductDAO {
 				pdDto = new ProductDTO();
 				pdDto.setProductId(rs.getInt("productId"));
 				pdDto.setProductName(rs.getString("productName"));
-				pdDto.setCompanyId(rs.getInt("companyId"));
+				pdDto.setCompanyId(rs.getString("companyId"));
 				pdDto.setPrice(rs.getInt("price"));
 				pdDto.setSoldCount(rs.getInt("soldCount"));
 				pdDto.setDetail(rs.getString("detail"));
@@ -95,7 +95,7 @@ public class ProductDAO {
 				conn = DatabaseUtil.getConnection();
 				pstmt = conn.prepareStatement(SQL);
 				pstmt.setString(1, productDTO.getProductName().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
-				pstmt.setInt(2, productDTO.getCompanyId());
+				pstmt.setString(2, productDTO.getCompanyId().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
 				pstmt.setInt(3, productDTO.getPrice());
 				pstmt.setInt(4, productDTO.getSoldCount());
 				pstmt.setString(5, productDTO.getDetail().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));

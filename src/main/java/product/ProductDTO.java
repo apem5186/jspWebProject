@@ -8,7 +8,7 @@ import lombok.Data;
 public class ProductDTO {
 	private int productId;
 	private String productName;
-	private int companyId;
+	private String companyId;
 	private int price;
 	private int soldCount;
 	private String detail;
@@ -18,7 +18,7 @@ public class ProductDTO {
 	public ProductDTO() {
 	}
 	
-	public ProductDTO(int productId, String productName, int companyId, int price, int soldCount,
+	public ProductDTO(int productId, String productName, String companyId, int price, int soldCount,
 			String detail, String imgUrl_1, String writerId) {
 		super();
 		this.productId = productId;

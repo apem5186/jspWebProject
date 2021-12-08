@@ -12,6 +12,7 @@
 		alert("결제에 실패하였습니다!")
 		document.location.href="index.jsp";
 	}
+	go()
 </script>
 </body>
 </html>

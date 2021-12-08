@@ -32,7 +32,7 @@
 	filename = new String(filename.getBytes("8859_1"), "utf-8");
 	String productId = "0";
 	String productName = null;
-	int companyId = 0;
+	String companyId = null;
 	int price = 0;
 	int soldCount = 0;
 	String detail = null;
@@ -68,7 +68,7 @@
 		}
 		if(multipartRequest.getParameter("companyId") != null) {
 			try {
-				companyId = Integer.parseInt(multipartRequest.getParameter("companyId"));	
+				companyId = multipartRequest.getParameter("companyId");	
 			} catch (Exception e) {
 				System.out.println("회사 넘버 오류");
 			}
@@ -123,7 +123,7 @@
 			return;
 		}
 		imgUrl_1 = filename;
-		if (productName == null || companyId == 0 || price == 0 ||
+		if (productName == null || companyId == null || price == 0 ||
 				soldCount == 0 || detail == null || imgUrl_1 == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
